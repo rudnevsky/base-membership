@@ -1,15 +1,13 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import { sdk } from '@farcaster/frame-sdk'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   useEffect(() => {
-    // Check if we're in a Farcaster Mini App environment
     if (typeof window !== 'undefined' && window.parent !== window) {
-      // Call ready when the component is mounted and content is ready
       sdk.actions.ready({ disableNativeGestures: true })
     }
   }, [])
