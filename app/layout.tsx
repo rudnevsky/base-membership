@@ -4,6 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: '/base membership',
   description: 'Become a member of the /base channel on Farcaster',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   icons: {
     icon: '/Base_Symbol_Blue.svg',
   },
@@ -30,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className="h-full">
+      <body className="h-full bg-white">
         {children}
       </body>
     </html>
