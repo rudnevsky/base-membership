@@ -8,8 +8,8 @@ export default function Home() {
         <div className="flex items-center justify-center gap-3">
           <div className="relative w-[30px] h-[30px] rounded-full overflow-hidden">
             <Image
-              alt="Talent Protocol"
-              src="/images/talent-logo.svg"
+              alt="Base Protocol"
+              src="/Base_Symbol_Blue.svg"
               fill
               className="object-cover"
             />
