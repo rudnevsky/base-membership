@@ -18,6 +18,10 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: "frame-ancestors 'self' https://warpcast.com",
           },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
         ],
       },
     ]
