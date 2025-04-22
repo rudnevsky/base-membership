@@ -7,8 +7,11 @@ import { sdk } from '@farcaster/frame-sdk'
 
 export default function Home() {
   useEffect(() => {
-    // Call ready when the component is mounted and content is ready
-    sdk.actions.ready({ disableNativeGestures: true })
+    // Check if we're in a Farcaster Mini App environment
+    if (typeof window !== 'undefined' && window.parent !== window) {
+      // Call ready when the component is mounted and content is ready
+      sdk.actions.ready({ disableNativeGestures: true })
+    }
   }, [])
 
   return (
