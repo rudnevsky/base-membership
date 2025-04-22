@@ -33,7 +33,17 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <script type="module" src="https://esm.sh/@farcaster/frame-sdk" />
+        <script type="module" src="https://esm.sh/@farcaster/frame-sdk" async />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.addEventListener('load', () => {
+              if (window.parent !== window) {
+                window.sdk = window.sdk || {};
+                window.sdk.actions = window.sdk.actions || {};
+              }
+            });
+          `
+        }} />
       </head>
       <body className={inter.className}>{children}</body>
     </html>

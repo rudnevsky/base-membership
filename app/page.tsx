@@ -12,10 +12,35 @@ declare global {
 
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.parent !== window) {
-      // Initialize the SDK when in a Farcaster Mini App environment
-      window.sdk?.actions?.ready({ disableNativeGestures: true })
+    const initializeFrame = async () => {
+      if (typeof window !== 'undefined' && window.parent !== window) {
+        try {
+          // Wait for the SDK to be available
+          await new Promise((resolve) => {
+            if (window.sdk) {
+              resolve(true)
+            } else {
+              const checkSdk = setInterval(() => {
+                if (window.sdk) {
+                  clearInterval(checkSdk)
+                  resolve(true)
+                }
+              }, 100)
+            }
+          })
+
+          // Initialize the SDK
+          window.sdk.actions.ready({
+            disableNativeGestures: true,
+            frameUrl: window.location.href,
+          })
+        } catch (error) {
+          console.error('Failed to initialize frame:', error)
+        }
+      }
     }
+
+    initializeFrame()
   }, [])
 
   return (
